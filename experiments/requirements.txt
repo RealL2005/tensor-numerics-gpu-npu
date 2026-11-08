@@ -1,0 +1,11 @@
+# 基础依赖
+numpy>=1.24
+
+# PyTorch：按目标平台选择其一
+#   GPU (CUDA)   : pip install torch --index-url https://download.pytorch.org/whl/cu124
+#   CPU          : pip install torch --index-url https://download.pytorch.org/whl/cpu
+#   昇腾 NPU     : pip install torch==<与CANN匹配的版本> torch_npu
+torch>=2.1
+
+# 可选：更严格的高精度参考（大 K 的 dot / matmul）
+# mpmath>=1.3
