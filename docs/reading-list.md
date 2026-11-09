@@ -26,21 +26,3 @@
 | 5 | FP Non-Associativity | [pdf](../papers/05_floating-point-non-associativity_reproducibility.pdf) | [note](notes/05-fp-non-associativity.md) | 🟡 摘要+指标已读 |
 
 状态约定：⬜ 未读 / 🟡 部分读 / ✅ 精读完毕 / ⭐ 已提炼出可复用的实验设计
-
-## 与「四个切入点」的对应
-
-| 切入点 | 主要支撑文献 | 可复用的具体做法 |
-| --- | --- | --- |
-| 默认精度 vs 显式配置 | [1] [4] [5] | [1] 的 eager/JIT/compile 三模式对比；[4] 的 `-O0/-O3/-ffast-math` 扫描；[5] 的 PyTorch 确定性开关评估 |
-| 归约顺序与并行分块 | [2] [5] | [2] 的归约树/分块描述符，[5] 的 pairwise + 分块确定性求和与开销量化 |
-| 数值敏感输入 | [4] [2] | [4] 的小程序生成器 + 七类 NaN/Inf/Zero/Num 差异分类；[2] 的数值探针式构造 |
-| 相同任务的不同实现 | [2] [3] | [2] 的 Triton 实现族对齐 cuBLAS；[3] 的契约写法用于声明「允许的差异」 |
-
-## 待解决问题（阅读后回填答案）
-
-- [ ] 论文 1 的差异判定阈值（`atol=5e-4, rtol=1e-4`）对本课题的一维求和是否合适？是否需要更严格的 ULP 口径？
-- [ ] 论文 2 的「归约顺序描述符」能否直接用于描述昇腾侧的算子实现？若不透明，黑盒重建思路是否可行？
-- [ ] 论文 3 的契约八要素能否作为本课题实验记录模板（每次实验声明 precondition/postcondition/tolerance/reference）？
-- [ ] 论文 5 的 `V_s / V_ermv / V_c` 指标是否足以区分「跨平台差异」与「同平台 run-to-run 波动」？
-- [ ] 论文 4 的 Varity 生成器是否开源可复用？若不可，如何手写等价的最小片段集？
-- [ ] 昇腾侧是否有与 `atomicAdd` 非确定性等价的机制？`torch.use_deterministic_algorithms` 在 NPU 上是否生效？

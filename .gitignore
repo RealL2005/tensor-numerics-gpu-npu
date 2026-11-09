@@ -17,3 +17,6 @@ results/*
 .idea/
 .DS_Store
 *.swp
+
+# colab-cli 凭据（refresh token），永不提交
+.colab-cli-oauth-config.json
