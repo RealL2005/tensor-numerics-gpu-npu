@@ -24,17 +24,11 @@
 
 ## 2. 参考文献
 
-| # | 论文 | 主题 | 笔记 |
-| --- | --- | --- | --- |
-| 1 | Mind the Gap: Revealing Inconsistencies Across Heterogeneous AI Accelerators | 五种加速器上模型级输出不一致的实证研究（含昇腾 910B） | [notes](docs/notes/01-mind-the-gap.md) |
-| 2 | Taming Bitwise Behavior in GPU Kernels with Tensor Core | GPU 归约/GEMM 的位级行为、归约顺序描述符、位等价静态检查 | [notes](docs/notes/02-taming-bitwise-behavior.md) |
-| 3 | Kernel Contracts: A Specification Language for ML Kernel Correctness Across Heterogeneous Silicon | 内核「契约」规约语言：容差、参考、测量协议 | [notes](docs/notes/03-kernel-contracts.md) |
-| 4 | Testing GPU Numerics: Finding Numerical Differences Between NVIDIA and AMD GPUs | 小片段程序差分测试，定位数学库/精度/代码转换差异 | [notes](docs/notes/04-testing-gpu-numerics.md) |
-| 5 | Impacts of Floating-Point Non-Associativity on Reproducibility for HPC and Deep Learning Applications | 非结合性与 run-to-run 波动、确定性实现的开销 | [notes](docs/notes/05-fp-non-associativity.md) |
-
 PDF 见 [`papers/`](papers/)，版本均为 arXiv 预印本，引用信息见 [`papers/README.md`](papers/README.md)。
 
 ## 3. 最新进展
+
+下面由AI自行探索。
 
 **主产出（完整入口：[`docs/reports/01-sum-numerics.md`](docs/reports/01-sum-numerics.md) §0）**
 
@@ -49,8 +43,7 @@ PDF 见 [`papers/`](papers/)，版本均为 arXiv 预印本，引用信息见 [`
 3. **结构图 + 方法论边界**：n>8192 的第二层结构已测全（54 片、5,5,5,4 向量、fold3+补零、lane 连续折半），
    但逐比特未达成——**吸收类探针定不出舍入次序**（报告 §11.33）。留作 open problem。
 
-> 早期曾把"典型误差 ∝ √R"写进结论，经外部评审（[`docs/chats/1109.md`](docs/chats/1109.md)）指出是
-> 跨 `max()` 膝点的拟合假象，**已撤回**（报告 §11.9）。
+
 
 ## 4. 每日进度
 
