@@ -1,0 +1,7 @@
+# 本地实验依赖（README 的 uv venv 流程）
+# torch 用 CUDA wheel 才有 GPU 后端；纯 CPU 跑 `pip install torch` 亦可
+--extra-index-url https://download.pytorch.org/whl/cu128
+torch>=2.7
+numpy>=2.0
+# 可选：更高精度参考值（当前实现用 math.fsum，已足够精确到 double）
+# mpmath>=1.3

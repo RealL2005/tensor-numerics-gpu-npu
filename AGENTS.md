@@ -11,7 +11,7 @@
 
 | 路径 | 职责 | 是否入库 |
 | --- | --- | --- |
-| `docs/` | 研究计划、文献清单、逐篇笔记 | 是 |
+| `docs/` | 研究计划、文献清单、逐篇笔记、AI对话 | 是 |
 | `papers/` | 参考 PDF、索引、BibTeX、抓取脚本 | 是 |
 | `experiments/src/` | 输入生成 / 执行 / 比较三个脚本 | 是 |
 | `data/` | 输入 `npz`、运行产物 `records.jsonl`、`env.json` | **否**（`.gitignore`，只留 `.gitkeep`） |
@@ -38,6 +38,7 @@ uv venv && uv pip install -r experiments/requirements.txt
 | `npu` | `ssh huawei-server-run` | 7 × Ascend 950PR（每卡 ~128 GB HBM）但只能使用0，1，2/ 256 核 / 503 GB / Ubuntu 24.04 | 昇腾侧正式实验 |
 | `gpu` | `~/.local/bin/colab-pi ...` | Tesla T4 / 15 GB / torch 2.14.1+cu130 | NVIDIA 侧正式实验 |
 | `cpu+gpu` | 本机 RTX 4050 6 GB（无 nvcc） | driver 615.78.08 / CC 8.9 | 只做小规模 sanity check |
+| `npu compiler` | `ssh huawei-server-build` | AscendNPU-IR目录下 | 深入编译器细节 |
 
 ### 4.1 `npu`：huawei-server-run
 
@@ -68,6 +69,12 @@ source /data/pri/cann-9.1.0/set_env.sh    # 必须，否则 import torch_npu 失
 - 会话磁盘非持久、断线丢状态 → 输入/产物必须回传本地 `data/`、`results/`。
 - `repl / console / auth / drivemount` 需 TTY，agent 里会挂死，别用。
 - 授权丢失时的恢复流程见 §6.4。
+
+### 4.3 `npu compiler`：huawei-server-build
+
+进入`AscendNPU-IR`，阅读`AGENTS.md`,了解项目组织结构。
+禁止私自构建，需要征求同意
+
 
 ## 5. 记录与文档
 
